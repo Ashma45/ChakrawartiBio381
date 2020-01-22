@@ -7,9 +7,9 @@ output:
     highlight: github
     theme: architect
 ---
+
 ![That's me](https://Ashma45.github.io/ChakrawartiBio381/FemaleScience.JPG)
 
 # Spring 2020 ComBio Class Assignments List
-
 
 ## __[Homework1: Typoradoc Bio381](Bio381.html)__
