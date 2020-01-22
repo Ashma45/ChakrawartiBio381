@@ -2,7 +2,10 @@
 title: "Initial Webpage Bio381 homework"
 author: "Ashma"
 date: "January 22, 2020"
-output: html_document
+output: 
+  html_document: 
+    highlight: kate
+    theme: cosmo
 ---
 
 ## Homework 1
