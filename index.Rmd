@@ -1,11 +1,12 @@
 ---
-title: "Initial Webpage Bio381 homework"
-author: "Ashma"
+title: "Bio381 UVM"
+author: "Ashma Chakrawarti"
 date: "January 22, 2020"
 output: 
   prettydoc::html_pretty:
-    highlight: kate
-    theme: cosmo
+    highlight: github
+    theme: architect
 ---
+# Spring 2020 ComBio Class Assignments List
 
 ## __[Homework1: Typoradoc Bio381](Bio381.html)__
