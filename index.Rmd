@@ -13,3 +13,5 @@ output:
 # Spring 2020 ComBio Class Assignments List
 
 ## __[Homework1: Typoradoc Bio381](Bio381.html)__
+
+Done
