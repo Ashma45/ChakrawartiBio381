@@ -8,7 +8,7 @@ output:
     theme: architect
 ---
 
-![That's me](https://Ashma45.github.io/ChakrawartiBio381/FemaleScience.JPG)
+<img src="FemaleScience.jpg" width="200" height="300"/>
 
 # Spring 2020 ComBio Class Assignments List
 
