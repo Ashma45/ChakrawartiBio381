@@ -8,5 +8,4 @@ output:
     theme: cosmo
 ---
 
-## Homework 1
-[Typora doc Bio381](Bio381.html)
+## __[Homework1: Typoradoc Bio381](Bio381.html)__
