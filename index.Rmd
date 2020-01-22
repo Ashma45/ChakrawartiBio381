@@ -14,4 +14,3 @@ output:
 
 ## __[Homework1: Typoradoc Bio381](Bio381.html)__
 
-Done
