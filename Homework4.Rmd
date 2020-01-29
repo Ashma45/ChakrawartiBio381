@@ -13,8 +13,8 @@ Second          More Text   1.555555  2.2220
 Third           x           3         124
 ```
 ```
-Find \t+
-Replace with ,
+Find \t+ # finds a single space or more tabs
+Replace with , # replacing tab space with a comma
 ```
 ```
 First String,Second,1.22,3.4
@@ -30,8 +30,8 @@ Ellison, Aaron, Harvard Forest
 Record, Sydne, Bryn Mawr
 ```
 ```
-Find (\w+), (\w+), (\w+.*)
-Replace with \2 \1 \(\3\)
+Find (\w+), (\w+), (\w+.*) # (\w+) find and capture one or more word charcater .* find everything else
+Replace with \2 \1 \(\3\) # arranging the order of the result \(\3\) adds a () bracket
 ```
 ```
 Bryan Ballif (University of Vermont)
@@ -44,8 +44,8 @@ Sydne Record (Bryn Mawr)
 0001 Georgia Horseshoe.mp3 0002 Billy In The Lowground.mp3 0003 Cherokee Shuffle.mp3 0004 Walking Cane.mp3
 ```
 ```
-Find .mp3\s
-Replace with .mp3\n
+Find .mp3\s # find the .mp3 and \s single space
+Replace with .mp3\n # replace in reults in its own line with line break \n
 ```
 ```
 0001 Georgia Horseshoe.mp3
@@ -57,8 +57,8 @@ Replace with .mp3\n
 #### Question 4 Now write a regular expression to grab the four digit number and put it at the end of the title:
 
 ```
-Find (\w{4}) (.*).mp3
-Replace with \2_\1.mp3
+Find (\w{4}) (.*).mp3 # capture first 4 word character and everything else without .mp3
+Replace with \2_\1.mp3 # arrange with .mp3 at the end
 ```
 ```
 Georgia Horseshoe_0001.mp3
@@ -75,8 +75,8 @@ Myrmica,punctiventris,12.2,4
 Lasius,neoniger,3.3,55
 ```
 ```
-Find (\w)\w+,(\w+),\d+.\d,(\d+)
-Replace with \1_\2,\3
+Find (\w)\w+,(\w+),\d+.\d,(\d+) # capture first letter of first word (/w) and capture one or more digits (\d+)
+Replace with \1_\2,\3 # arrange the order
 ```
 ```
 C_pennsylvanicus,44
@@ -88,8 +88,8 @@ L_neoniger,55
 #### Question 6 Beginning with the original data set, rearrange it to abbreviate the species name like this:
 
 ```
-Find (\w)\w+,(\w{4})\w+,\d+.\d,(\d+)
-Replace with \1_\2,\3
+Find (\w)\w+,(\w{4})\w+,\d+.\d,(\d+) # (\w{4} capture 4 word characters
+Replace with \1_\2,\3 # arranging genus and species name with _ and last digits
 ```
 ```
 C_penn,44
@@ -101,7 +101,7 @@ L_neon,55
 #### Question 7
 
 ```
-Find (\w{3})\w+,(\w{3})\w+,(\d+.\d),(\d+)
+Find (\w{3})\w+,(\w{3})\w+,(\d+.\d),(\d+) # (\d+.\d) capture digits with decimal
 Replace with \1\2, \4, \3
 ```
 ```
