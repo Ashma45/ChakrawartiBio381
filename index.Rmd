@@ -15,3 +15,5 @@ output:
 ## __[Homework1: Typoradoc Bio381](Bio381.html)__
 
 ## __[Homework2: Regular expressions](Homework4.html)__
+
+## __[Homework3: Vectors in R](Vector_in_R.html)__
