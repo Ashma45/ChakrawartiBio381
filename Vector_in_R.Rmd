@@ -1,0 +1,145 @@
+---
+title: "VectorsInR"
+author: "Ashma"
+date: "February 5, 2020"
+output: html_document
+---
+
+---
+
+# Assignment operator
+
+### _Assign each expression to the value of the variable z and print the value stored in z_
+
+```{r}
+x <- 1.1 # assigning values 
+a <- 2.2
+b <- 3.3
+
+z <- x^a^b # assigning the expression to z
+print(z) # printing the result for z
+
+```
+
+```{r}
+z <- x^a*b
+print(z)
+
+```
+
+``` {r}
+z <- 3*x^3 + 2*x^2 + 1
+print(z)
+
+```
+
+# Create Vectors
+
+### _Using the rep and seq functions, create the following vectors_
+
+```{r}
+seq_A <- seq(from=1, to=8, by=1) # creates an ascending sequence from 1 to 8 
+seq_D <- seq(from=7, to=1, by=-1) # creates a descending sequence from 7 to 1
+vec1 <- c(seq_A, seq_D) # concatanate the 2 sequences and create a vector
+print(vec1)
+
+```
+
+```{r}
+seq_R <- seq(from=1, to=5, by=1)
+vec2 <- rep(x=seq_R, times=seq_R) # repeats each element in the vector as its own value
+print(vec2)
+
+```
+
+```{r}
+seq_I <- seq(from=5, to=1, by=-1)
+vec3 <- rep(x=seq_I, c(seq(1,5))) # repeats element in vector by sequence as first element once and last element 5 times
+print(vec3)
+
+```
+
+# Polar Coordinates with random uniform numbers
+
+### _Using one of R's inverse trigonometry functions (asin(), acos(), or atan()), convert random uniform numbers into polar coordinates_
+
+```{r}
+rnum <- runif(2) # creating two random numbers 
+p <- rnum[1] # assigning first random number as p
+q <-rnum[2] # assigning second random number as q
+pol <- sqrt(p^2+q^2) # calculate value of polar coordinate r
+theta <- atan(q/p) # calculate angular coordinate theta
+print(pol)
+print(theta)
+
+```
+
+# Playing with vector elements
+
+### Using R expressions, update the queue successively for Noah's ark {queue <- c("sheep", "fox", "owl", "ant")}
+
+##### the serpent arrives;
+
+```{r}
+queue <- c("sheep", "fox", "owl", "ant") # creating a vector for initial queue of animals to enter into the boat
+print(queue)
+```
+
+```{r}
+q_ser <- c(queue, "serpent") # concatanating serpent to the queue
+print(q_ser)
+```
+
+##### sheep enters the boat;
+
+```{r}
+q_sep <- q_ser[-1] # remove first element from the queue after sheep moves in the boat
+print(q_sep)
+```
+
+##### donkey arrives and talk his way to the front line;
+
+```{r}
+q_donk <- c("Donkey", q_sep) # makes donkey first element by combining it first to existing queue
+print(q_donk)
+```
+
+##### the serpent gets impatient and leaves;
+
+```{r}
+q_ser1 <- q_donk[-5] # serpent leaves by removing 5th element
+print(q_ser1)
+```
+
+##### owl gets bored and leave;
+
+```{r}
+q_owl <- q_ser1[-3] # removing owl 
+print(q_owl)
+```
+
+##### the aphid arrives and the ant invites him to cut in line;
+
+```{r}
+
+q_aph <- append(x=q_owl, values = "Aphid", after = 2) # merging vector with append function that adds an element to a vector with position assigned
+print(q_aph)
+```
+
+##### Finally, determine the position of the aphid in the line.
+
+```{r}
+which(q_aph == "Aphid") # which position is aphids
+```
+
+# Vector of integers
+
+### _Use R to create a vector of all of the integers from 1 to 100 that are not divisible by 2, 3, or 7_
+
+```{r}
+A <- seq(from=1, to=100, by=1) # assigning a variable to list of elements from 1 to 100
+print(A)
+B <- A [!(!A%%2) + (!A%%3) + (!A%%7)] # creates vector of elements using ! that are not divisible by 2, 3 or 7
+print(B)
+
+```
