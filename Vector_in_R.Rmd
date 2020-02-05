@@ -1,5 +1,5 @@
 ---
-title: "VectorsInR"
+title: "Vectors In R"
 author: "Ashma"
 date: "February 5, 2020"
 output: html_document
