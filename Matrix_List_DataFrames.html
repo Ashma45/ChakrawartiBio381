@@ -189,7 +189,7 @@ summary {
 <h2>Assign to the variable n_dims a single random integer between 3 and 10.</h2>
 <pre class="r"><code>n_dims &lt;- sample(3:10, 1)
 print(n_dims)</code></pre>
-<pre><code>## [1] 8</code></pre>
+<pre><code>## [1] 10</code></pre>
 <div id="create-a-vector-of-consecutive-integers-from-1-to-n_dims2." class="section level3">
 <h3>Create a vector of consecutive integers from 1 to n_dims2.</h3>
 <pre class="r"><code>vec &lt;- seq(1:(n_dims^2))</code></pre>
@@ -200,45 +200,49 @@ print(n_dims)</code></pre>
 </div>
 <div id="create-a-square-matrix-with-these-elements." class="section level3">
 <h3>create a square matrix with these elements.</h3>
-<pre class="r"><code>sq_m &lt;- matrix(data = fx, nrow = sqrt(length(fx))) # using sqaure root of the length of vector for nrow</code></pre>
+<pre class="r"><code>sq_m &lt;- matrix(data = fx, nrow = sqrt(length(fx))) # using square root of the length of vector for nrow</code></pre>
 </div>
 <div id="print-out-the-matrix" class="section level3">
 <h3>print out the matrix</h3>
 <pre class="r"><code>print(sq_m)</code></pre>
-<pre><code>##      [,1] [,2] [,3] [,4] [,5] [,6] [,7] [,8]
-## [1,]   35   48   30   26   61   11   12   44
-## [2,]   13   21    5   58   63   27   38   24
-## [3,]   25   50   49   64   56   45   31   62
-## [4,]   39   28   19   10    4   59    3   42
-## [5,]   23   57   40   20    2    9   54   33
-## [6,]   53   60    1   32   52   16   15   17
-## [7,]   41   29   18    8   34   14   51    6
-## [8,]   22   43    7   37   36   46   47   55</code></pre>
+<pre><code>##       [,1] [,2] [,3] [,4] [,5] [,6] [,7] [,8] [,9] [,10]
+##  [1,]   84   34   82   43   99   73    2   79   75     5
+##  [2,]   57   10   52   69   33   76   55   21   72    85
+##  [3,]    9   40   83   47    4   20   71   39    3    78
+##  [4,]   46   19   96   86   29    1   94   66   35    50
+##  [5,]   92   24   74   54   18   36   45   28   70    95
+##  [6,]   64   15   41   30   27   44   26   91   58     7
+##  [7,]   56    6   25   11   12   98  100   97   31    37
+##  [8,]   49   63   51   42   67   68   13   14   22     8
+##  [9,]   62   23   81   77   87   61   89   53   32    17
+## [10,]   59   65   80   16   48   38   60   93   90    88</code></pre>
 </div>
 <div id="find-a-function-in-r-to-transpose-the-matrix-and-print-it-out-again." class="section level3">
 <h3>find a function in r to transpose the matrix and print it out again.</h3>
 <pre class="r"><code>sq_mt &lt;- t(sq_m) # tranpose the matrix
 print(sq_mt) </code></pre>
-<pre><code>##      [,1] [,2] [,3] [,4] [,5] [,6] [,7] [,8]
-## [1,]   35   13   25   39   23   53   41   22
-## [2,]   48   21   50   28   57   60   29   43
-## [3,]   30    5   49   19   40    1   18    7
-## [4,]   26   58   64   10   20   32    8   37
-## [5,]   61   63   56    4    2   52   34   36
-## [6,]   11   27   45   59    9   16   14   46
-## [7,]   12   38   31    3   54   15   51   47
-## [8,]   44   24   62   42   33   17    6   55</code></pre>
+<pre><code>##       [,1] [,2] [,3] [,4] [,5] [,6] [,7] [,8] [,9] [,10]
+##  [1,]   84   57    9   46   92   64   56   49   62    59
+##  [2,]   34   10   40   19   24   15    6   63   23    65
+##  [3,]   82   52   83   96   74   41   25   51   81    80
+##  [4,]   43   69   47   86   54   30   11   42   77    16
+##  [5,]   99   33    4   29   18   27   12   67   87    48
+##  [6,]   73   76   20    1   36   44   98   68   61    38
+##  [7,]    2   55   71   94   45   26  100   13   89    60
+##  [8,]   79   21   39   66   28   91   97   14   53    93
+##  [9,]   75   72    3   35   70   58   31   22   32    90
+## [10,]    5   85   78   50   95    7   37    8   17    88</code></pre>
 </div>
 <div id="calculate-the-sum-and-the-mean-of-the-elements-in-the-first-row-and-the-last-row." class="section level3">
 <h3>calculate the sum and the mean of the elements in the first row and the last row.</h3>
 <pre class="r"><code>sum(sq_mt[1,]) # calculate sum of elements in first row</code></pre>
-<pre><code>## [1] 251</code></pre>
+<pre><code>## [1] 578</code></pre>
 <pre class="r"><code>sum(sq_mt[nrow(sq_mt), ]) # calculate sum of elements in last row</code></pre>
-<pre><code>## [1] 283</code></pre>
+<pre><code>## [1] 470</code></pre>
 <pre class="r"><code>mean(sq_mt[1,]) # calculate mean of elements in first row</code></pre>
-<pre><code>## [1] 31.375</code></pre>
+<pre><code>## [1] 57.8</code></pre>
 <pre class="r"><code>mean(sq_mt[nrow(sq_mt), ]) # calculate the mean of elements in last row</code></pre>
-<pre><code>## [1] 35.375</code></pre>
+<pre><code>## [1] 47</code></pre>
 </div>
 <div id="read-about-the-eigen-function-and-use-it-on-your-matrix." class="section level3">
 <h3>read about the eigen() function and use it on your matrix.</h3>
@@ -249,28 +253,32 @@ print(sq_mt) </code></pre>
 <pre class="r"><code>print(eg)</code></pre>
 <pre><code>## eigen() decomposition
 ## $values
-## [1] 273.33563  79.81983  45.58211  34.20493 -10.71724 -35.11479 -49.97763
-## [8] -98.13284
+##  [1]  492.78983  163.26712  121.03666   73.83091   37.12413   13.77283
+##  [7]  -13.76937  -87.01289 -106.98504 -135.05417
 ## 
 ## $vectors
-##            [,1]       [,2]        [,3]       [,4]       [,5]       [,6]
-## [1,] -0.3570174 -0.1836023  0.51466196  0.2219798 -0.4448943  0.4166508
-## [2,] -0.3543583 -0.2889335 -0.01640372  0.5570192  0.2845047 -0.3570691
-## [3,] -0.4445773  0.3049051 -0.16886710 -0.4812956 -0.4111260 -0.3463982
-## [4,] -0.3511460  0.3573839 -0.23011964  0.3423882  0.1038212 -0.2579916
-## [5,] -0.3680543 -0.3759124  0.13408131 -0.1117137 -0.2212013 -0.2205018
-## [6,] -0.2646128  0.2863246 -0.47236345  0.2550168 -0.1241166  0.5993971
-## [7,] -0.2642780 -0.5815186 -0.45808674 -0.3537198  0.2749016  0.2530454
-## [8,] -0.3881875  0.3172719  0.44992705 -0.2982420  0.6335746  0.2010535
-##            [,7]         [,8]
-## [1,]  0.3800768  0.093218066
-## [2,] -0.1718502  0.492376329
-## [3,]  0.0402665  0.398226927
-## [4,]  0.4852656 -0.515720083
-## [5,] -0.5213570 -0.568686130
-## [6,] -0.4292555  0.029923300
-## [7,]  0.3426720 -0.002280324
-## [8,] -0.1241270 -0.004419853</code></pre>
+##             [,1]        [,2]        [,3]        [,4]        [,5]        [,6]
+##  [1,] -0.3603112  0.50294006  0.02500067  0.37794038 -0.39134938  0.02779929
+##  [2,] -0.3192587 -0.05591693  0.16855651 -0.20687512  0.32299283 -0.44715165
+##  [3,] -0.3194562 -0.23753866  0.06097265  0.74816226  0.13051055 -0.15258370
+##  [4,] -0.3442222 -0.32804050 -0.21645480 -0.19608807 -0.51225100 -0.46075039
+##  [5,] -0.2934775  0.17532958  0.33114421 -0.20165827 -0.26522774  0.48614940
+##  [6,] -0.2735460  0.40215599 -0.14486648 -0.07886695  0.58538830 -0.07602168
+##  [7,] -0.3633966 -0.39755331 -0.43442577 -0.18271832  0.10020368  0.41753309
+##  [8,] -0.3069267  0.09821060 -0.41970005  0.04808202  0.09342606  0.23920628
+##  [9,] -0.2659270  0.31228070  0.10807915 -0.36302265 -0.08203314 -0.23554643
+## [10,] -0.2996228 -0.34958018  0.64280289 -0.04239217  0.15672693  0.18588630
+##               [,7]         [,8]        [,9]       [,10]
+##  [1,] -0.026503844 -0.241929371  0.31049061  0.40521521
+##  [2,]  0.067649237 -0.441563098  0.47264780 -0.31067552
+##  [3,]  0.289001046  0.115248545 -0.27405254 -0.25658385
+##  [4,] -0.355556585 -0.001859477 -0.29370735  0.03489020
+##  [5,] -0.003254692 -0.255388484 -0.31644794 -0.51063469
+##  [6,] -0.284323448 -0.097995668 -0.50028000  0.21692168
+##  [7,]  0.400607461 -0.228890170  0.03429833  0.29892217
+##  [8,] -0.367636997  0.474956331  0.38636194 -0.37646589
+##  [9,]  0.568771454  0.546073710 -0.04845987  0.04516255
+## [10,] -0.291177531  0.286721771  0.12494470  0.36236068</code></pre>
 </div>
 <div id="dig-in-with-the-typeof-function-to-figure-out-their-type." class="section level3">
 <h3>dig in with the typeof() function to figure out their type.</h3>
@@ -286,45 +294,45 @@ print(sq_mt) </code></pre>
 <h3>my_matrix, which is a 4 x 4 matrix filled with random uniform values</h3>
 <pre class="r"><code>my_matrix &lt;- matrix(data = runif(16), nrow=4)
 print(my_matrix)</code></pre>
-<pre><code>##           [,1]      [,2]        [,3]         [,4]
-## [1,] 0.6913100 0.1588070 0.369378856 0.6302627705
-## [2,] 0.2910545 0.1482202 0.291953553 0.6420918955
-## [3,] 0.1722641 0.9875387 0.000653151 0.1415663720
-## [4,] 0.5247532 0.9440065 0.539075005 0.0007956366</code></pre>
+<pre><code>##            [,1]      [,2]      [,3]      [,4]
+## [1,] 0.33858123 0.6825747 0.2577160 0.2945351
+## [2,] 0.43080855 0.4074868 0.8249423 0.3117338
+## [3,] 0.60750437 0.3092058 0.5332434 0.8492546
+## [4,] 0.07582816 0.9725785 0.1072399 0.3711879</code></pre>
 </div>
 <div id="my_logical-which-is-a-100-element-vector-of-true-or-false-values.-do-this-efficiently-by-setting-up-a-vector-of-random-values-and-then-applying-an-inequality-to-it." class="section level3">
 <h3>my_logical which is a 100-element vector of TRUE or FALSE values. Do this efficiently by setting up a vector of random values and then applying an inequality to it.</h3>
 <pre class="r"><code>my_logical &lt;- (rnorm(100) &gt; 1) # create a logical vector using inequality
 print(my_logical)</code></pre>
-<pre><code>##   [1] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE  TRUE FALSE
-##  [13] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE  TRUE FALSE FALSE  TRUE
-##  [25] FALSE  TRUE FALSE FALSE FALSE FALSE FALSE  TRUE FALSE FALSE FALSE FALSE
-##  [37] FALSE  TRUE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
-##  [49] FALSE  TRUE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
-##  [61] FALSE  TRUE  TRUE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
-##  [73] FALSE FALSE FALSE FALSE  TRUE FALSE  TRUE FALSE FALSE  TRUE FALSE  TRUE
-##  [85] FALSE FALSE FALSE FALSE FALSE FALSE  TRUE FALSE FALSE FALSE FALSE FALSE
-##  [97]  TRUE FALSE  TRUE  TRUE</code></pre>
+<pre><code>##   [1] FALSE FALSE  TRUE FALSE FALSE FALSE  TRUE FALSE FALSE  TRUE FALSE FALSE
+##  [13] FALSE FALSE FALSE  TRUE FALSE  TRUE FALSE FALSE  TRUE FALSE  TRUE FALSE
+##  [25] FALSE FALSE  TRUE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
+##  [37] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE  TRUE FALSE FALSE
+##  [49] FALSE FALSE FALSE  TRUE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
+##  [61] FALSE FALSE FALSE FALSE FALSE FALSE FALSE  TRUE  TRUE FALSE FALSE FALSE
+##  [73] FALSE FALSE FALSE FALSE  TRUE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
+##  [85] FALSE FALSE FALSE FALSE  TRUE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
+##  [97] FALSE  TRUE FALSE FALSE</code></pre>
 </div>
 <div id="my_letters-which-is-a-26-element-vector-of-all-the-lower-case-letters-in-random-order." class="section level3">
 <h3>my_letters, which is a 26-element vector of all the lower-case letters in random order.</h3>
 <pre class="r"><code>my_letters &lt;- sample(letters[1:26]) # creates vector of random order lower case letters.
 print(my_letters)</code></pre>
-<pre><code>##  [1] &quot;h&quot; &quot;w&quot; &quot;m&quot; &quot;t&quot; &quot;b&quot; &quot;i&quot; &quot;v&quot; &quot;q&quot; &quot;p&quot; &quot;k&quot; &quot;o&quot; &quot;x&quot; &quot;u&quot; &quot;a&quot; &quot;j&quot; &quot;r&quot; &quot;z&quot; &quot;e&quot; &quot;c&quot;
-## [20] &quot;g&quot; &quot;n&quot; &quot;d&quot; &quot;f&quot; &quot;s&quot; &quot;y&quot; &quot;l&quot;</code></pre>
+<pre><code>##  [1] &quot;v&quot; &quot;u&quot; &quot;k&quot; &quot;z&quot; &quot;e&quot; &quot;q&quot; &quot;w&quot; &quot;h&quot; &quot;j&quot; &quot;g&quot; &quot;s&quot; &quot;y&quot; &quot;a&quot; &quot;r&quot; &quot;d&quot; &quot;f&quot; &quot;b&quot; &quot;m&quot; &quot;t&quot;
+## [20] &quot;i&quot; &quot;x&quot; &quot;l&quot; &quot;p&quot; &quot;o&quot; &quot;c&quot; &quot;n&quot;</code></pre>
 </div>
 <div id="create-a-new-list-which-has-the-element22-from-the-matrix-the-second-element-of-the-logical-vector-and-the-second-element-of-the-letters-vector." class="section level3">
 <h3>create a new list, which has the element[2,2] from the matrix, the second element of the logical vector, and the second element of the letters vector.</h3>
 <pre class="r"><code>my_list &lt;- list(my_matrix[2,2], my_logical[2], my_letters[2]) # create a list 
 print(my_list)</code></pre>
 <pre><code>## [[1]]
-## [1] 0.1482202
+## [1] 0.4074868
 ## 
 ## [[2]]
 ## [1] FALSE
 ## 
 ## [[3]]
-## [1] &quot;w&quot;</code></pre>
+## [1] &quot;u&quot;</code></pre>
 </div>
 <div id="use-the-typeof-function-to-confirm-the-underlying-data-types-of-each-component-in-this-list" class="section level3">
 <h3>use the typeof() function to confirm the underlying data types of each component in this list</h3>
@@ -339,7 +347,7 @@ print(my_list)</code></pre>
 <h3>combine the underlying elements from the new list into a single atomic vector with the c() function.</h3>
 <pre class="r"><code>new_vec &lt;- c(my_list[[1]],my_list[[2]],my_list[[3]]) # concatanate into a vector
 print(new_vec)</code></pre>
-<pre><code>## [1] &quot;0.148220225470141&quot; &quot;FALSE&quot;             &quot;w&quot;</code></pre>
+<pre><code>## [1] &quot;0.407486758893356&quot; &quot;FALSE&quot;             &quot;u&quot;</code></pre>
 </div>
 <div id="what-is-the-data-type-of-this-vector" class="section level3">
 <h3>what is the data type of this vector?</h3>

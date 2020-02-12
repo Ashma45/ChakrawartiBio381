@@ -28,7 +28,7 @@ fx <- sample(vec)
 ### create a square matrix with these elements.
 
 ```{r}
-sq_m <- matrix(data = fx, nrow = sqrt(length(fx))) # using sqaure root of the length of vector for nrow
+sq_m <- matrix(data = fx, nrow = sqrt(length(fx))) # using square root of the length of vector for nrow
 ```
 
 ### print out the matrix
