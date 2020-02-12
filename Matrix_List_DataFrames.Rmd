@@ -56,7 +56,7 @@ mean(sq_mt[nrow(sq_mt), ]) # calculate the mean of elements in last row
 ### read about the eigen() function and use it on your matrix.
 
 ```{r}
-eg<- eigen(sq_mt, symmetric = TRUE, only.values = FALSE, EISPACK = FALSE) # calculates eigenvalues and eigenvectors of matrix
+eg<- eigen(sq_mt) # calculates eigenvalues and eigenvectors of matrix
 ```
 
 ### look carefully at the elements of $values and $vectors. What kind of numbers are these?
