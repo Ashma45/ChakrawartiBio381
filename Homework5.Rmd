@@ -134,9 +134,7 @@ p2 <- ggplot(data=z1, aes(x=myVar, y=..density..)) +
 print(p2)
 ```
  
-``` 
-The histograms for my original dataset and the simulated new dataset do not match with each other. The model is not predicting the realistic data. This might be because the parameters like mean and sd were specified beforehand for the simulated data to which the best fitting normal distribution data was created.
-```
+
 * Normal Probability density
 
 ```{r}
@@ -156,6 +154,13 @@ xval <- seq(0,max(z1$myVar),len=length(z1$myVar))
  p2 + stat
 ```
 
+* Density curve
+
+```{r}
+p2 <-  p2 +  geom_density(linetype="dotted",size=0.75)
+print(p2)
+```
+
 * Exponential probability density
 ```{r}
 expoPars <- fitdistr(z1$myVar,"exponential")
@@ -166,8 +171,14 @@ stat2 <- stat_function(aes(x = xval, y = ..y..), fun = dexp, colour="blue", n = 
 ```
 
 ```{r}
-# compare to true parameters
-# compare to parameters estimated from simple means and standard deviations
-mean(z1$myVar)
-sd(z1$myVar)
-````
+library(patchwork)
+```
+
+```{r}
+p1 + p2 # looking both histograms side by side
+```
+
+
+``` 
+The histograms for my original dataset and the simulated new dataset do not match with each other. The model is not predicting the realistic data. This might be because I created a random normal data using the parameters like mean and sd from my original data to which the best fitting normal distribution data was created.
+```
