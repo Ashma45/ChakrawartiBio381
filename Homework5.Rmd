@@ -116,10 +116,10 @@ pSpecial + statSpecial
 
 
 ```{r}
-# new data set with length as my original data and mean 33.98
+# simulating new data set with length, mean and sd as my original data 
 
-z1 <- rnorm(n=116,mean=33.98,sd=12.09)
-z1 <- data.frame(1:116,z1)
+z1 <- rnorm(n = length(z$zonedia), mean = meanML, sd = sdML)
+z1 <- data.frame(1:length(z$zonedia),z1)
 names(z1) <- list("ID","myVar")
 z1 <- z1[z1$myVar>0,]
 str(z1)
