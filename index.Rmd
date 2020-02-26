@@ -12,14 +12,14 @@ output:
 
 # Spring 2020 ComBio Class Assignments List
 
-## __[Homework1: Typoradoc Bio381](Bio381.html)__
+## __[Homework1 and 2: Typoradoc Bio381](Bio381.html)__
 
-## __[Homework2: Regular expressions](Homework4.html)__
+## __[Homework3: Regular expressions](Homework4.html)__
 
-## __[Homework3: Vectors in R](Vector_in_R.html)__
+## __[Homework4: Vectors in R](Vector_in_R.html)__
 
-## __[Homework4: Matrices, Lists and DataFrames](Matrix_List_DataFrames.html)__
+## __[Homework5: Matrices, Lists and DataFrames](Matrix_List_DataFrames.html)__
 
-## __[Homework5: Probability Distribution](Homework5.html)__
+## __[Homework6: Probability Distribution](Homework5.html)__
 
 ## __[Homework7: Creating Fake Dataset to test Hypothesis](Test_hypothesis.html)__
