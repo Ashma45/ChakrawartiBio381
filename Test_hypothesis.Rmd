@@ -1,0 +1,115 @@
+---
+title: "Test hypothesis by creating fake datasets"
+author: "Ashma"
+date: "February 26, 2020"
+output: html_document
+editor_options: 
+  chunk_output_type: console
+---
+
+
+## Null Hypothesis 
+```
+Presence of antimicrobial resistant _Staphylococcus aureus_ strains is not higher in humans than cows in dairy farms.
+```
+```{r}
+# loading packages
+library(tidyverse)
+library(ggplot2)
+library(MASS)
+library(dplyr)
+```
+
+# Creating a fake data for ANOVA
+
+```{r}
+nGroup <- 2
+nName <- c("Cows", "Humans")
+nSize <- c(25,28) # number of obervations of each group
+nMean <- c(50,21) # mean of each group
+nSD <- c(10,7) # sd of each group
+ID <- 1:(sum(nSize)) # id vector of each rows
+AMR <- c(rnorm(n=nSize[1], mean = nMean[1], sd = nSD[1]),
+            rnorm(n=nSize[2], mean = nMean[2], sd = nSD[2]))
+            
+Spp <- rep(nName,nSize) # repeats nName by nSize times
+table(Spp)
+ano_data <- data.frame(ID,Spp,AMR)
+str(ano_data)
+```
+
+# Running ANOVA
+```{r}
+AnoModel <- aov(AMR~Spp, data = ano_data)
+summary(AnoModel)
+```
+
+# ANOVA plot
+```{r}
+AnoPlot <- ggplot(data=ano_data,aes(x=Spp,y=AMR,fill=Spp)) +
+           geom_boxplot()
+print(AnoPlot)
+```
+
+```
+Looking at the summary results of ANOVA, it shows that there is a significant presence of antibiotic resistance strains in humans than cows.
+```
+### Altering the means keeping the original sample size to see the variation and significance of data
+
+```{r}
+nGroup <- 2
+nName <- c("Cows", "Humans")
+nSize <- c(25,28) # number of obervations of each group
+nMean <- c(12,10) # adjusting means of each group
+nSD <- c(10,7) # sd of each group
+ID <- 1:(sum(nSize)) # id vector of each rows
+AMR <- c(rnorm(n=nSize[1], mean = nMean[1], sd = nSD[1]),
+            rnorm(n=nSize[2], mean = nMean[2], sd = nSD[2]))
+            
+Spp <- rep(nName,nSize) # repeats nName by nSize times
+table(Spp)
+ano_data <- data.frame(ID,Spp,AMR)
+str(ano_data)
+
+AnoModel <- aov(AMR~Spp, data = ano_data)
+summary(AnoModel)
+AnoPlot <- ggplot(data=ano_data,aes(x=Spp,y=AMR,fill=Spp)) +
+           geom_boxplot()
+print(AnoPlot)
+```
+
+```
+Changing means of the groups from 50 to 12 and 21 to 10 made the results insignificant.
+```
+
+### Altering the sample size keeping original means to see variation and significance of data
+
+```{r}
+nGroup <- 2
+nName <- c("Cows", "Humans")
+nSize <- c(25,25) # adjusting number of obervations of each group
+nMean <- c(50,21) # means of each group
+nSD <- c(10,7) # sd of each group
+ID <- 1:(sum(nSize)) # id vector of each rows
+AMR <- c(rnorm(n=nSize[1], mean = nMean[1], sd = nSD[1]),
+            rnorm(n=nSize[2], mean = nMean[2], sd = nSD[2]))
+            
+Spp <- rep(nName,nSize) # repeats nName by nSize times
+table(Spp)
+ano_data <- data.frame(ID,Spp,AMR)
+str(ano_data)
+
+AnoModel <- aov(AMR~Spp, data = ano_data)
+summary(AnoModel)
+AnoPlot <- ggplot(data=ano_data,aes(x=Spp,y=AMR,fill=Spp)) +
+           geom_boxplot()
+print(AnoPlot)
+```
+
+```
+Keeping same sample size for humans and cows produced significant results and changing the sample size from 25 to 10 still gave significant results.
+```
+### Conclusion
+
+After adjusting the means and sample size for detecting significant pattern, the sample size and means should be as kept the first code chunk for the results to be significant with p-value less than 0.05.
+
