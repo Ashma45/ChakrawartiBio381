@@ -23,3 +23,5 @@ output:
 ## __[Homework6: Probability Distribution](Homework5.html)__
 
 ## __[Homework7: Creating Fake Dataset to test Hypothesis](Test_hypothesis.html)__
+
+## __[Homework8: Data Manipualtion using dplyr](Data_Manipulation_dplyr.html)__
