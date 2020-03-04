@@ -316,7 +316,7 @@ print(iris5)</code></pre>
 </div>
 <div id="finally-create-iris6-that-calculates-the-average-sepal-length-the-average-sepal-width-and-the-sample-size-for-each-species-of-in-the-iris4-data-frame-and-print-iris6." class="section level3">
 <h3>Finally, create iris6 that calculates the average sepal length, the average sepal width, and the sample size for each species of in the iris4 data frame and print iris6.</h3>
-<pre class="r"><code>iris4.Sp &lt;- group_by(iris4,Species)
+<pre class="r"><code>iris4.Sp &lt;- group_by(iris4,Species) # grouping the data on Species
 head(iris4.Sp)</code></pre>
 <pre><code>## # A tibble: 6 x 4
 ## # Groups:   Species [1]

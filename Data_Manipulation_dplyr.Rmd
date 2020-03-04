@@ -64,7 +64,7 @@ print(iris5)
 ### Finally, create iris6 that calculates the average sepal length, the average sepal width, and the sample size for each species of in the iris4 data frame and print iris6.
 
 ```{r}
-iris4.Sp <- group_by(iris4,Species)
+iris4.Sp <- group_by(iris4,Species) # grouping the data on Species
 head(iris4.Sp)
 iris6 <- summarize(iris4.Sp, aveSL = mean(Sepal.Length), aveSW = mean(Sepal.Width), Sample.size = n())
 print(iris6)
