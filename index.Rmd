@@ -25,3 +25,5 @@ output:
 ## __[Homework7: Creating Fake Dataset to test Hypothesis](Test_hypothesis.html)__
 
 ## __[Homework8: Data Manipualtion using dplyr](Data_Manipulation_dplyr.html)__
+
+## __[Homework9: Structured Programming and Functions](Homework9.html)__

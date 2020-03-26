@@ -1,0 +1,136 @@
+---
+title: "Structured Programming"
+author: "Ashma"
+date: "March 25, 2020"
+output: html_document
+---
+
+### Organizing code with Structured Programming
+
+```{r}
+# load library -----------------------------
+library(ggplot2)
+
+# create global variables -----------------------------
+
+vari <- data.frame(n_name=c("cows","humans"),# 2 groups
+                n_size=c(25,25), # 25 in each group
+                n_mean=c(50,21), # means of groups
+                n_sd=c(10,7))
+
+  
+
+# -------------------------------
+# FUNCTION get_data
+# description: generate data frame in correct orientation
+# inputs: numberic variables normally distributed, in vector form 
+# outputs: data frame
+##################################
+
+get_data <- function(vari) { 
+  amr <- c(rnorm(n=vari$n_size[1],mean=vari$n_mean[1],sd=vari$n_sd[1]),
+                 rnorm(n=vari$n_size[2],mean=vari$n_mean[2],sd=vari$n_sd[2]))
+  spp <- rep(vari$n_name,vari$n_size) 
+id <- 1:(sum(vari$n_size))
+    df <- data.frame(id,spp,amr)
+
+return(df)
+
+} # end of get_data
+
+#---------------------------------
+
+
+# -------------------------------
+# FUNCTION summarize_ANOVA
+# description: run ANOVA model on data
+# inputs: normally distributed variables of numeric
+# outputs: ANOVA model
+##################################
+summarize_ANOVA <- function(df) {
+  z <- aov(amr ~ spp, data=df)
+ano_sum <- summary(z)
+
+return(ano_sum)
+
+} # end of calculate_ANOVA
+#--------------------------------
+
+
+# -------------------------------
+# FUNCTION datPlot
+# description: plotting data
+# inputs: data frame with variables of numeric
+# outputs: box plot
+##################################
+datPlot <- function(df) {
+ano_plot <- ggplot(data=df,
+                 aes(x=spp,
+                     y=amr,
+                     fill=spp)) +
+  geom_boxplot()
+ 
+print(ano_plot)
+message("Message: BoxPlot created for ANOVA!")
+
+} # end of graph_normal
+#---------------------------------
+
+```
+
+
+### Using the functions
+
+```{r}
+df <- get_data(vari) # temporary variable 
+summarize_ANOVA(df) 
+datPlot(df)
+```
+
+
+### Modifying the function by adding linear regression
+
+```{r}
+# -------------------------------
+# FUNCTION: pos_reg
+# description: calculate regression
+# inputs: data frame in which x is categorical variable and y is continuous variable
+# outputs: poisson regression
+##################################
+pos_reg <- function(df) {
+posModel <- glm(df[,1]~df[,2], data=df, family=poisson())
+
+return(summary(posModel))
+
+} # end of pos_reg
+#---------------------------------
+
+
+#---------------------------------
+###################################
+# FUNCTION: posPlot 
+# description: plot a poisson regression
+# INPUTS: dataframe in which the first col is the x variable and second is the y
+# OUTPUTS: a plot of the regression
+#-------------------------
+posPlot <- function(df) {
+  
+  posPlot <- ggplot(data=df,aes(x=spp,y=amr)) +
+           geom_point() +
+           stat_smooth(method=glm,se=0.99)  
+print(posPlot)
+
+} # end of posPlot
+#---------------------------------
+
+```
+
+### Adding the new functions to the previous ones
+
+```{r}
+df <- get_data(vari) # temporary variable 
+summarize_ANOVA(df) 
+datPlot(df)
+pos_reg(df)
+posPlot(df)
+```
