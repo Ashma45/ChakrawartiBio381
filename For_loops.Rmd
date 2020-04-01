@@ -1,0 +1,190 @@
+---
+title: "For loops and Randomization Test"
+author: "Ashma"
+date: "April 1, 2020"
+output: html_document
+---
+
+####1. Using a for loop, write a function to calculate the number of zeroes in a numeric vector. Before entering the loop, set up a counter variable counter <- 0. Inside the loop, add 1 to counter each time you have a zero in the matrix. Finally, use return(counter) for the output.
+
+```{r}
+my_vec <- rep(c(0,1,2),150) # creating a numeric vector
+counter <- 0
+
+# a loop to calculate number of zeroes in my_ved
+for(i in seq_along(my_vec)){
+  if(my_vec[i]==0)
+    counter <- counter+1
+  
+}
+print(counter)
+```
+
+####2.Use subsetting instead of a loop to rewrite the function as a single line of code.
+
+```{r}
+zeros <- sum(my_vec == 0)
+print(zeros)
+length(my_vec[my_vec==0]) # another method
+```
+
+####3.Write a function that takes as input two integers representing the number of rows and columns in a matrix. The output is a matrix of these dimensions in which each element is the product of the row number x the column number.
+
+```{r}
+# -----------------------------------------
+# FUNCTION mat_rc
+# description: matrix with each element as a product of row number and column number
+# inputs: two integers x and y as rows and column of matrix m
+# outputs: matrix of dimension x*y
+###########################################
+a <- 5
+b <- 8
+mat_rc <- function(x=a,
+                   y=b){
+
+m <- matrix(nrow = x, ncol = y)
+  for(i in 1:nrow(m)) {
+    for(j in 1:ncol(m)) {
+      m[i,j] <- i*j
+    } # close j loop
+  } # close i loop
+  return(print(m))
+}   # end of mat_rc
+#--------------------------------------------
+mat_rc()
+
+```
+
+####4. Use the code from the upcoming April 2nd lecture (Randomization Tests) to design and conduct a randomization test for some of your own data. You will need to modify the functions that read in the data, calculate the metric, and randomize the data. Once those are set up, the program should run correctly calling your new functions. Also, to make your analysis fully repeatable, make sure you set the random number seed at the beginning (use either set.seed() in base R, or char2seed in the TeachingDemos package.
+
+```{r}
+library(ggplot2)
+library(TeachingDemos)
+
+set.seed(100) # set the random number seed to repeat the analysis results
+char2seed("espresso withdrawal")
+char2seed("espresso withdrawal", set=FALSE)
+
+# -----------------------------------------
+# FUNCTION read_data
+# description: generate data for analysis
+# inputs: 
+# outputs: dataframe for my data on AMR 
+###########################################
+read_data <- function(z=NULL) {
+  if (is.null(z))  {
+                  Cows <- round(rnorm(mean=25,n=50,sd=0.25),2)
+                  Humans <- round(rnorm(mean=21,n=50,sd=0.7),2)
+                  df <- data.frame(ID=seq_along(Cows),Cows,Humans)} # set up data frame
+return(df)
+}
+# end of read_data
+#-------------------------------------------
+read_data()
+
+# alternative way for different data using class code if else
+
+# read_data <- function(z=NULL){
+#  if(is.null(z)){
+#    xObs <- 1:20
+#   yObs <- xObs + 5*rnorm(20)
+#   dF <- data.frame(ID=seq_along(xObs),
+ #                    xObs,
+ #                    yObs)} else {
+#                       dF <- read.table(file = z, row.names = 1, header = TRUE, sep = ",", stringsAsFactors = FALSE)}
+ # return(dF)
+#}
+# readData() 
+
+# -----------------------------------------
+# FUNCTION get_metric
+# description: calculate metric for randomization test
+# inputs: 2 column data frame for linear regression
+# outputs: regression slope
+###########################################
+get_metric <- function(z=NULL) {
+ . <- lm(z[,3]~z[,2])  
+    . <- summary(.) 
+    . <- .$coefficients[2,1]  
+    slope <- .
+    return(slope)
+}
+
+# end of get_metric
+#-------------------------------------------
+
+# -----------------------------------------
+# FUNCTION shuffle_data
+# description: randomize data for regression analysis
+# inputs: dataframe created with 3 columns
+# outputs: 3 column data frame
+###########################################
+shuffle_data <- function(z=NULL) {
+z[,3] <- sample(z[,3])
+return(z)
+}
+shuffle_data()
+# end of shuffle_data
+#-------------------------------------------
+
+# -----------------------------------------
+# FUNCTION get_pval
+# description: get p value from data
+# inputs: list of observed metric, and vector of simulated metrics
+# outputs: lower and upper tail probability values
+###########################################
+get_pval <- function(z=NULL) {
+pLower <- mean(z[[2]] <= z[[1]]) 
+   pUpper <- mean(z[[2]] >= z[[1]])
+   return(c(pLower,pUpper))
+ }
+get_pval()
+# end of get_pval
+#-------------------------------------------
+
+# -----------------------------------------
+# FUNCTION plot_ranTest
+# description: ggplot of histogram of simulated values
+# inputs: list of observed and simulated metrics
+# outputs: save ggplot graph
+###########################################
+plot_ranTest <- function(z=NULL) {
+ dat <- data.frame(ID=seq_along(z[[2]]),Cow_sim=z[[2]])
+   p1 <- ggplot(data=dat,mapping=aes(x=Cow_sim))
+   p1 + geom_histogram(mapping=aes(fill=I("blue"),color=I("black"))) +
+     geom_vline(aes(xintercept=z[[1]],col="red")) 
+}
+# end of plot_ranTest
+#-------------------------------------------
+```
+
+```{r}
+# Performing the randomisation test
+set.seed(100)
+nSim <- 500
+x_sim <- rep(NA,nSim) # vector of simulated slopes
+df <- read_data()
+x <- get_metric(df)
+for (i in seq_len(nSim)) {
+x_sim[i] <- get_metric(shuffle_data(df))
+}
+slopes <- list(x,x_sim)
+get_pval(slopes)
+plot_ranTest(slopes)
+```
+
+####5.For comparison, calculate in R the standard statistical analysis you would use with these data. How does the p-value compare for the standard test versus the p value you estimated from your randomization test? If the p values seem very different, run the program again with a different starting seed (and/or increase the number of replications in your randomization test). If there are persistent differences in the p value of the standard test versus your randomization, what do you think is responsible for this difference?
+
+```{r}
+n <- 150
+Cow <- rnorm(n, mean=50,sd=0.5)
+Human <- rnorm(n, mean=27,sd=0.2) 
+ID <- seq_len(n)
+AMR <- data.frame(ID,Cow,Human)
+l_reg <- lm(AMR[,3]~AMR[,2])
+l_reg_sum <- summary(l_reg) 
+pVal <- l_reg_sum$coefficients[2,4]  
+pVal
+```
+
+#### The p-value of my original dataset falls within the range of p-value of randomization test.

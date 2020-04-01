@@ -27,3 +27,5 @@ output:
 ## __[Homework8: Data Manipualtion using dplyr](Data_Manipulation_dplyr.html)__
 
 ## __[Homework9: Structured Programming and Functions](Homework9.html)__
+
+## __[Homework10: Loops and Randomization](For_loops.html)__

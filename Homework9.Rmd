@@ -117,8 +117,9 @@ posPlot <- function(df) {
   
   posPlot <- ggplot(data=df,aes(x=spp,y=amr)) +
            geom_point() +
-           stat_smooth(method=glm,se=0.99)  
+           geom_smooth(method="glm",se=TRUE)  
 print(posPlot)
+
 
 } # end of posPlot
 #---------------------------------
