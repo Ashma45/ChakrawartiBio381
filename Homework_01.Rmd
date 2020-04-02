@@ -1,0 +1,30 @@
+---
+title: "Homework#2"
+author: "Ashma"
+date: "January 22, 2020"
+output: 
+  html_document: 
+    highlight: kate
+    theme: lumen
+---
+
+# Bio381
+
+## January 15 2020
+
+### Typora lesson
+
+#### Ashma Chakrawarti
+
+##### Animal Science, PhD, Barlow Lab
+
+###### University of Vermont
++ Class assignment
++ Typora markdown
++ Writing unordered list
+
+1. Class assignment
+2. Typora markdown
+3. Writing ordered list
+4. I did it
+
