@@ -1,0 +1,90 @@
+---
+title: "Batch Processing for my AST data"
+author: "Ashma"
+date: "April 7, 2020"
+output:
+  prettydoc::html_pretty
+---
+
+#### Repeat the exercise from the Batch Processing Lecture (7th April), but do it using real data sets rather than purely simulated. Check with folks in your lab to see if there are multiple data sets available for analysis. Stick to simple data analyses and graphics, but try to set it up as a batch process that will work on multiple files and save summary results to a common file.
+
+```{r}
+# -----------------------------------------
+# FUNCTION reg_stat
+# description: fits linear model by extracting statistics and summary
+# inputs: two column dataframe x and y
+# outputs: slope,p-value and r2
+###########################################
+reg_stat <- function(d=NULL) {
+             if(is.null(d)) {
+               xVar <- "Cows"
+               yVar <- "Humans"
+               d <- data.frame(xVar,yVar)
+             }
+  . <- lm(data=d,d[,2]~d[,1])
+  . <- summary(.)
+  stat_list <- list(slope=.$coefficients[2,1],
+                    pVal=.$coefficients[2,4],
+                    r2=.$r.squared)
+
+return(stat_list)
+
+} # end of reg_stat
+#-------------------------------------------
+```
+
+
+```{r}
+library(TeachingDemos)
+char2seed("Lockdown Assignment")
+
+#--------------------------------------------
+# Global variables
+file_folder <- "AST_data/"
+n_files <- 18
+file_out <- "AST_stat_summary.csv"
+#--------------------------------------------
+drug_list <- list.files(path=file_folder)
+
+# Create data frame to hold file summary statistics
+ID <- seq_along(drug_list)
+fileName <- drug_list
+slope <- rep(NA,n_files)
+pVal <- rep(NA,n_files)
+r2 <- rep(NA,n_files)
+stat_output <- data.frame(ID,fileName,slope,pVal,r2)
+```
+
+
+```{r}
+# batch process by looping through individual files
+for (i in seq_along(drug_list)) {
+  AST <- read.table(file=paste(file_folder,drug_list[i],sep=""),
+                     sep=",",
+                     header=TRUE) # read in next data file
+
+  AST_clean <- AST[complete.cases(AST),] # removing missing data
+  . <- reg_stat(AST) # pull regression stats from clean file
+  stat_output[i,3:5] <- unlist(.) # unlist, copy into last 3 columns
+  
+}
+# set up output file and incorporate time stamp and minimal metadata
+  write.table(cat("# Summary stats for ",
+                    "batch processing of regression models","\n",
+                    "# timestamp: ",as.character(Sys.time()),"\n",
+                    "# AC","\n",
+                    "# ------------------------", "\n",
+                    "\n",
+                    file=file_out,
+                    row.names="",
+                    col.names="",
+                    sep=""))
+  
+# now add the data frame
+  write.table(x=stat_output,
+              file=file_out,
+              row.names=FALSE,
+              col.names=TRUE,
+              sep=",",
+              append=TRUE)
+```
