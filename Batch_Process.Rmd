@@ -8,6 +8,11 @@ output:
 
 #### Repeat the exercise from the Batch Processing Lecture (7th April), but do it using real data sets rather than purely simulated. Check with folks in your lab to see if there are multiple data sets available for analysis. Stick to simple data analyses and graphics, but try to set it up as a batch process that will work on multiple files and save summary results to a common file.
 
+```
+I have 18 files for antibiotic sensitivity testing showing zone diameter of inhibition in mm using 18 antibiotics against S. aureus isolated from cows and humans. Calculating linear relationship between 2 hosts isolates AST.
+
+```
+
 ```{r}
 # -----------------------------------------
 # FUNCTION reg_stat
