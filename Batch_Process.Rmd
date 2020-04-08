@@ -88,3 +88,5 @@ for (i in seq_along(drug_list)) {
               sep=",",
               append=TRUE)
 ```
+
+##### [Summary statistics of AST](https://ashma45.github.io/ChakrawartiBio381/AST_stat_summary.csv)
