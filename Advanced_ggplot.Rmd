@@ -1,0 +1,93 @@
+---
+title: "Homework 12"
+author: "Ashma"
+date: "April 15, 2020"
+output: html_document
+---
+
+#### Advanced ggplotting
+
+```{r}
+# loading packages required for making graphs using ggplot
+library(ggplot2)
+library(ggthemes)
+library(ggpubr)
+library(RColorBrewer)
+library(dplyr)
+```
+
+##### I will be using 2 datasets from my lab work. The data includes ID of farms from where human swab samples and cow milk samples were taken to isolate strains of *Staphylococcus aurues* along with their antibiotic sensitivity profiles using both phenotypic and genotypic assays.
+```{r}
+setwd("C:/Users/Ashma/Documents/BarlowLab/labdata") # change directory for dataset
+amr <- read.csv("AST_ACfarms.csv",header = T) # read the dataset
+dt<- read.csv("CombinedStaph_data.csv",header=T)
+head(amr) # peek in data
+head(dt)
+
+# looking at frequency of isolation of bacteria from different sources
+dt1 <- dt %>%
+  group_by(source) %>%
+  summarise(counts = n())
+
+# creating bar graph using counts of bacteria from different sources
+freq <- ggplot(dt1, aes(x = source, y = counts)) +
+  geom_bar(fill = "#0073C2FF", stat = "identity", color = "black") +
+  geom_text(aes(label = counts), vjust = -0.3) + # adding labels to each bar
+  labs(x = "Sources of isolates", y = "Number of isolates") +
+  theme_pubclean()
+
+# adding title and controlling appearance of graph
+freq + ggtitle("Frequency of S. aureus from different sources in farms") +
+  theme(plot.title = element_text(face ="italic"))+
+  theme(axis.title.y = element_text(angle = 90))
+
+# graph for beta lactam sensitivity of isolates with presence of blaZ gene
+beta <- ggplot(amr, aes(zonedia,  fill=blazgene)) + 
+  geom_histogram(binwidth = 0.65,color="black") + 
+  geom_vline(xintercept = 29, linetype="dotted", # adding line to graph
+            color = "blue", size=1) +
+  labs(x = "Zone diameter in mm", y = "Number of isolates") +
+  scale_fill_discrete(name = "BlaZ gene",
+breaks = c("pos", "neg"),
+labels = c("positive","negative")) + # changing labels for legends
+  annotate("text", x = 29, y= 10, label = "Clinical Breakpoint", 
+           size = 5, color = "red") + # adding text in graph
+  theme_pubclean() +
+ggtitle("BlaZ gene in S. aureus resistant against beta lactams") +
+  theme(plot.title = element_text(face ="italic"))
+beta
+
+# using custom colors 
+dt$ClonalComplex <- as.factor(dt$ClonalComplex)
+colourCount = length(unique(dt$ClonalComplex))
+getPalette = colorRampPalette(brewer.pal(8, "Paired")) # customizing color palette
+eplot<- ggplot(data=dt, mapping=aes(S_source, fill=ClonalComplex))+
+  geom_bar(color= "black") + 
+  scale_fill_manual(values = getPalette(colourCount))
+eplot +
+     theme(legend.position = "bottom") +
+   guides(fill= guide_legend(nrow = 3))+
+ggtitle("Clonal complexes of isolates from different sources") +
+   theme_classic2()
+
+# changing the appearance of facet labels and headers
+
+sr <- count(dt,S_source, Types_of_farm, BlaZ)
+head(raw)
+srDF <- as.data.frame(sr)
+sf <- ggplot(srDF) +
+  geom_col(aes(Types_of_farm, n, fill=BlaZ), color ="black") + 
+  theme_pubclean()+
+  facet_grid(. ~ S_source) +
+  labs(x = "Types of Farms", y = "Number of isolates") +
+  ggtitle("Beta lactam resistant S aureus in different farm types")
+colr <- c("#D55E00","#009E73")
+co <- sf + scale_fill_manual(values =colr) +
+  theme(strip.text = element_text(face = "bold",size = rel(1.5)),
+        strip.background = element_rect(fill = "Thistle",
+                                        color = "black",size = 1))
+co
+# saving as pdf or png
+ggsave(filename = "Farms_betaLactam.png", plot = co,width = 8, height = 5, dpi= 300)
+```
+
